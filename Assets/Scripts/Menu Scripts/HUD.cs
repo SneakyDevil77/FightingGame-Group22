@@ -27,6 +27,7 @@ public class HUD : MonoBehaviour
     private float startCountdown = 5;
     private float remainingTime = 0;
     private float roundNumber;
+    private bool isPaused;
     
 
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class HUD : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
+        isPaused = PauseMenu.isPaused;
         roundStartTimer();
     }
 
@@ -54,7 +56,7 @@ public class HUD : MonoBehaviour
 
     void roundStartTimer()
     {
-        if (remainingTime >= 0)
+        if (remainingTime >= 0 && isPaused == false)
         {
             Time.timeScale = 0;
             elapsedTime = Time.realtimeSinceStartup - startedTime;
@@ -63,9 +65,10 @@ public class HUD : MonoBehaviour
             startCountdownText.enabled = true;
             startCountdownText.text = "" + remainingTime;
         }
-        else
+        else if (remainingTime <= 0 && isPaused == false)
         {
         Time.timeScale = 1;
+        Debug.Log(Time.timeScale);
         startCountdownText.enabled = false;
         startTimer();
         }

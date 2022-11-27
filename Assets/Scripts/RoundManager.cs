@@ -31,17 +31,6 @@ public class RoundManager : MonoBehaviour
         p2Score = PlayerPrefs.GetInt("player2Score");
         currentTimer = HUD.currentTime; //calls 
         startTimer = HUD.startingTimer;   
-        if (roundsleft < 3)  //Reset's rounds left when reloading the scene with a number below zero
-        {
-            if (PlayerPrefs.GetFloat("roundNumber") < 0)
-            {
-                roundsleft = 3f;
-            }
-            else
-            {
-                roundsleft = PlayerPrefs.GetFloat("roundNumber");
-            }
-        }
     }
 
     // Update is called once per frame
@@ -61,15 +50,14 @@ public class RoundManager : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        switch(other.gameObject.tag)
+        //Checks the Tag of the game object that is leaving the trigger box.
+        switch(other.gameObject.tag) 
         {
-        case "P1":
+        case "P1": //If player 1 object is leaving trigger, Player 2 wins and boolean changes so next round can be called.
         p2win = true;
-        Debug.Log("p2 win round " + p2win);
         break;
         case "P2":
         p1win = true;
-        Debug.Log("p1 win round" + p1win);
         break;
         }
     }
@@ -81,50 +69,37 @@ public class RoundManager : MonoBehaviour
             roundsleft -= 1;
             PlayerPrefs.SetFloat("roundNumber", roundsleft);
             isTimerDone = false;
-            if (roundsleft < 1)
-            {
-                winScreen();
-            }
-            else
-            {
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
-            }
+            checkRoundsLeft();
             
         }
         else if (p1win)
         {
             PlayerPrefs.SetInt("player1Score", p1Score + 1);
-            Debug.Log("P1 score" + PlayerPrefs.GetInt("player1Score"));
             p1win = false;
             roundsleft -= 1;
             PlayerPrefs.SetFloat("roundNumber", roundsleft);
-            if (roundsleft < 1)
-            {
-                winScreen();
-            }
-            else
-            {
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
-            }
+            checkRoundsLeft();
         }
         else if (p2win)
         {
             PlayerPrefs.SetInt("player2Score", p2Score + 1);
-            Debug.Log("P2 score" + PlayerPrefs.GetInt("player2Score"));
             p1win = false;
             roundsleft -= 1;
             PlayerPrefs.SetFloat("roundNumber", roundsleft);
-            if (roundsleft < 1)
-            {
-                winScreen();
-            }
-            else
-            {
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
-            }
+            checkRoundsLeft();
+        }
+    }
+
+    private void checkRoundsLeft()
+    {
+        if (roundsleft < 1)
+        {
+            winScreen();
+        }
+        else
+        {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
         }
     }
 
