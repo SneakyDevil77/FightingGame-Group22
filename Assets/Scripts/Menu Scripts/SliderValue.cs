@@ -2,20 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 
 public class SliderValue : MonoBehaviour
 {
-    public Slider sliderUI;
-    private TMP_Text textSliderValue;
+    [SerializeField] private Slider volumeSlider = null;
+    [SerializeField] private TMP_Text volumeTextUI = null;
+    [SerializeField] private AudioMixer audioMixer = null;
 
-    void Start (){
-    textSliderValue = GetComponent<TMP_Text>();
-    ShowSliderValue();
+    [SerializeField] private Slider timerSlider;
+    [SerializeField] private TMP_Text timerSliderTextUI;
+    public static float roundTimer = 50;
+
+    void Start()
+    {
+    LoadValues();
     }
 
-    public void ShowSliderValue () {
-    string sliderMessage = "" + sliderUI.value;
-    textSliderValue.text = sliderMessage;
+    public void showVolumeValue(float volume) 
+    {
+        volumeTextUI.text = volume.ToString("0.0");
     }
+
+    public void showTimerValue(float timer)
+    {
+        timerSliderTextUI.text = timer.ToString("0.0");
+    }
+
+    public void changeVolume()
+    {
+        audioMixer.SetFloat("Volume", volumeSlider.value);
+    }
+
+    public void SaveButton()
+    {
+        float volumeValue = volumeSlider.value;
+        PlayerPrefs.SetFloat("VolumeValue", volumeValue);
+        float timerValue = timerSlider.value;
+        PlayerPrefs.SetFloat("TimerValue", timerValue);
+
+        LoadValues();
+    }
+
+    void LoadValues()
+    {
+        float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
+        volumeSlider.value = volumeValue;
+
+        float timerValue = PlayerPrefs.GetFloat("TimerValue");
+        timerSlider.value = timerValue;
+    }
+
+    /*public void SetRoundnumber()
+    {
+        roundNumber = timerSlider.value;
+    } */
+
 }

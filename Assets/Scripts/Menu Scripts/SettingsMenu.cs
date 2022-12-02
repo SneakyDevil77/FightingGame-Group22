@@ -10,14 +10,11 @@ using System;
 public class SettingsMenu : MonoBehaviour
 {
     public GameObject firstoptions;
-    public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
-    public Slider sliderUI;
-    public TMP_Text timerSliderValue;
+
     
     bool isFullscreen;
     public static float roundNumber = 3;
-    public static float roundTimer = 50;
 
     Resolution[] resolutions;
 
@@ -50,15 +47,6 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-
-        timerSliderValue = GetComponent<TMP_Text>();
-        ShowSliderValue();
-    }
-
-    private void ShowSliderValue()
-    {
-        string sliderMessage = "" + sliderUI.value;
-        timerSliderValue.text = sliderMessage;
     }
 
     public void setfirstoption()
@@ -75,28 +63,14 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, isFullscreen, resolution.refreshRate);
     }
 
-    public void SetVolume (float volume)
-    {
-        audioMixer.SetFloat("Volume", volume);
-    }
-
     public void SetFullscreen (bool isFullscreen)
     {
-        Screen.fullScreen = isFullscreen; //Toggles Fullscreen when toggle button is pressed
+        Screen.fullScreen = isFullscreen;
     }
 
     public void SetGraphics (int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
-        Debug.Log(qualityIndex);
     }
 
-    public void SetRoundnumber()
-    {
-        roundNumber = sliderUI.value;
-    }
-    public void SetRoundTimer()
-    {
-        roundTimer = sliderUI.value;
-    }
 }
