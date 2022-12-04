@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4267336549018334551}
   - component: {fileID: 4588598755851275774}
   - component: {fileID: -1012903986554717856}
+  - component: {fileID: -7157838680316582201}
+  - component: {fileID: -746595516653585037}
   m_Layer: 5
   m_Name: Arthur
   m_TagString: Untagged
@@ -112,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &-1012903986554717856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +141,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7236657, y: 2.3291066}
   m_EdgeRadius: 0
+--- !u!95 &-7157838680316582201
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267336549018334549}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f718dc87f5703284ea74adde4e93a987, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-746595516653585037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267336549018334549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5381a82f70a15e445aa8ec88928ec0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
 --- !u!1 &5264389029479074782
 GameObject:
   m_ObjectHideFlags: 0
