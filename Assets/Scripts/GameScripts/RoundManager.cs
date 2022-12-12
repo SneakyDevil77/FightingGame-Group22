@@ -14,7 +14,7 @@ public class RoundManager : MonoBehaviour
     private LoadCharacter Lc;
     private Transform P1spawnPoint;
     private Transform P2spawnPoint;
-    public TMP_Text winnerText;
+    [SerializeField] private TMP_Text winnerText;
     
     private bool isTimerDone = false;
     private bool p1win = false;
@@ -29,14 +29,14 @@ public class RoundManager : MonoBehaviour
     {
         p1Score = PlayerPrefs.GetInt("player1Score"); //assigns p1 and p2 score when the scene is restarted
         p2Score = PlayerPrefs.GetInt("player2Score");
-        currentTimer = HUD.currentTime; //calls 
-        startTimer = HUD.startingTimer;   
+        currentTimer = RoundTimer.currentTime; //calls 
+        startTimer = RoundTimer.startingTimer;   
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HUD.currentTime <= 0)
+        if (RoundTimer.currentTime <= 0)
         {
             isTimerDone = true;
         }

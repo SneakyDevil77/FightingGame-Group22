@@ -13,7 +13,6 @@ public class SliderValue : MonoBehaviour
 
     [SerializeField] private Slider timerSlider;
     [SerializeField] private TMP_Text timerSliderTextUI;
-    public static float roundTimer = 50;
 
     void Start()
     {

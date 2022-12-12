@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    GameObject P1;
-    GameObject P2;
-    public float yElavation = 4f;
-    public float CamSmoothing = 3f;
+    [SerializeField] GameObject P1;
+    [SerializeField] GameObject P2;
+    public float yElavation = 0f;
+    public float CamSmoothing = 10f;
 
     Camera Cam;
-    Transform P1T;
-    Transform P2T;
+    RectTransform P1T;
+    RectTransform P2T;
 
     Vector3 P1Pos;
     Vector3 P2Pos;
@@ -24,12 +24,12 @@ public class CameraController : MonoBehaviour
         P1 = GameObject.FindGameObjectWithTag("P1");
         P2 = GameObject.FindGameObjectWithTag("P2");
 
-        CamPos = new Vector3(0f, yElavation, -10f);
+        CamPos = new Vector3(0f, yElavation, 0f);
 
         Cam = GetComponent<Camera>();
 
-        P1T = P1.GetComponent<Transform>();
-        P2T = P2.GetComponent<Transform>();
+        P1T = P1.GetComponent<RectTransform>();
+        P2T = P2.GetComponent<RectTransform>();
     }
 
     void Update()

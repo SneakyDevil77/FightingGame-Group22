@@ -13,7 +13,7 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
 
     
-    bool isFullscreen;
+    bool isFullscreen = true;
     public static float roundNumber = 3;
 
     Resolution[] resolutions;

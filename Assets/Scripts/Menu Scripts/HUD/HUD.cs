@@ -14,75 +14,27 @@ public class HUD : MonoBehaviour
     public Image P2image;
     public TMP_Text P1name;
     public TMP_Text P2name;
-    public TMP_Text rTimer;
     public TMP_Text rNumber;
-    public TMP_Text startCountdownText;
     
     private int selectedCharacter;
     private int P2selectedCharacter;
-    public static float startingTimer;
-    public static float currentTime = 0f;
-    private float elapsedTime = 0f;
-    private float startedTime = 0f;
-    private float startCountdown = 5;
-    private float remainingTime = 0;
+
     private float roundNumber;
-    private bool isPaused;
     
 
     // Start is called before the first frame update
     void Start()
     {    
-        startingTimer = PlayerPrefs.GetFloat("TimerValue");
-        currentTime = startingTimer;
         roundNumber = RoundManager.roundsleft;    
         setSprites();
         setnames();
         displayroundNumber();
-        startcountdowntimer();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        isPaused = PauseMenu.isPaused;
-        roundStartTimer();
-    }
-
-    void startcountdowntimer()
-    {
-        startedTime = Time.realtimeSinceStartup;
-    }
-
-    void roundStartTimer()
-    {
-        if (remainingTime >= 0 && isPaused == false)
-        {
-            Time.timeScale = 0;
-            elapsedTime = Time.realtimeSinceStartup - startedTime;
-            remainingTime = startCountdown - elapsedTime;
-            remainingTime = Mathf.RoundToInt(remainingTime);
-            startCountdownText.enabled = true;
-            startCountdownText.text = "" + remainingTime;
-        }
-        else if (remainingTime <= 0 && isPaused == false)
-        {
-        Time.timeScale = 1;
-        startCountdownText.enabled = false;
-        startTimer();
-        }
-  
+        
     }
 
     private void displayroundNumber()
     {
         rNumber.text = "Round: " + roundNumber;
-    }
-
-    private void startTimer()
-    {
-        currentTime -= 1 * Time.deltaTime;
-        rTimer.text = "Time Left: " + Mathf.Round(currentTime);
     }
 
     private void setSprites()
